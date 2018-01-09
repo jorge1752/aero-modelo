@@ -18,13 +18,19 @@ void setup() {
     Serial.println(" Erro!");
   else
     Serial.println("Ok!");
-  pinMode(2, INPUT);
+  pinMode(2, INPUT_PULLUP);
 }
 
 void loop() {
   int cliente = 1;
   int porta = 8;
   int estado = digitalRead(2);
+  int sensorY = analogRead(A0);
+  int sensorX = analogRead(A1);
+  // print out the value you read:
+  Serial.println(sensorY);
+  Serial.println(sensorX);
+  delay(1000);
   sprintf(msg, "%d%d%d", cliente, porta, estado);
 
   sprintf(debug, "Cliente: %d, Porta: %d, Estado: %d", cliente, porta, estado);
@@ -34,4 +40,3 @@ void loop() {
   driver.waitPacketSent();
   count++;
 }
-
